@@ -53,8 +53,9 @@ void compareValue(){
     int i=0;
     int pass =1;
     
-    while(tokens[posT].value[i]!= '\0'&& pass){
-        printf("    posIndex %d -> %c == %c ? %s\n",pos, c[pos],tokens[posT].value[i],c);
+    while(tokens[posT].value[i]!= '\0'&& pass && c[pos]!='\0'){
+        printf("    %c = %c ? \n",c[pos],tokens[posT].value[i]);
+        //printf("    posIndex %d -> %c == %c ? %s\n",pos, c[pos],tokens[posT].value[i],c);
         if(tokens[posT].value[i]==c[pos] ){
             pos++;
         }else{
@@ -67,7 +68,7 @@ void compareValue(){
         posT++;
         terminal();
     }else{
-        printf("    compareValue Not pass\n");
+        //printf("    compareValue Not pass\n");
         nextrule();
     }
     
@@ -122,7 +123,7 @@ void nTerminal(){
 
 int rule(){
     find = 0;
-    printf("{\n");
+    //printf("{\n");
     //Fonction : rule\n");
     
     char * ruleT=tokens[posT].value;
@@ -130,20 +131,20 @@ int rule(){
     struct Token* p = getTokens();
     for (int i = 0; i < getTokenLen()-1 && !find ; i++){
         find = 0;
-        printf("    rule-> index : %d -> value : %s ->> value(i+1) : %s compare to ruleT :%s \n",i,p[i].value,p[i+1].value,ruleT);
+        //printf("    rule-> index : %d -> value : %s ->> value(i+1) : %s compare to ruleT :%s \n",i,p[i].value,p[i+1].value,ruleT);
         if(p[i].key==NL && p[i+1].key==NTERMINAL && strcmp(p[i+1].value, ruleT)==0){
                 ///find=1;
                 //pos=posOfC-1;
                 //pos=currentC;
-                printf("    push pos : %d\n",pos);
+                //printf("    push pos : %d\n",pos);
                 top=push(indexR,top,pos);
                 posT=i+1;
-                sleep(1);
+                //sleep(1);
                 nTerminal();
                 if(!find){
                     pos=indexR[top];
                     top=pop(indexR,top);
-                    printf("    pop pos : %d\n",pos);
+                    //printf("    pop pos : %d\n",pos);
                 }
                 
         }
@@ -151,15 +152,15 @@ int rule(){
         //p++;
     }   
     
-    printf("}\n");//Fonction Fin: rule\n");
+    //printf("}\n");//Fonction Fin: rule\n");
     if(!find){
         pos=currentC;
-        printf("    current pos : %d \n",pos);
+        //printf("    current pos : %d \n",pos);
     }
     return find;
 }
 void nextrule(){
-    printf("Fonction : nextrule\n");
+    //printf("Fonction : nextrule\n");
   //  char * ruleT=tokens[posT].value;
 
 }
@@ -182,9 +183,9 @@ void analy( char * cr){
     
     
     if(verified){
-        printf("verification passed\n");
+        printf("OK : verification passed\n");
     }else{
-        printf("verification failed\n");
+        printf("KO : verification failed\n");
     }
     free(c);
 
