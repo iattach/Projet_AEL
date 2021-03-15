@@ -9,7 +9,6 @@ int main(int argc , char ** argv){
     if (!len) {
         return 0;
     }
-    
     analy(c);
     
     return 0;
