@@ -1,2 +1,3 @@
 S : a S ba
-S : a b
+S : a Sa
+Sa : b

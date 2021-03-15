@@ -1,10 +1,11 @@
 #include "lex.h"
+#include "analy.h"
 
 int main(int argc , char ** argv){
 
-    lexRun(argv[1]);
+    lexRun();
 
-    int len = getTokensLen();
+    int len = getTokenLen();
     if (!len) {
         return 0;
     }
@@ -15,6 +16,17 @@ int main(int argc , char ** argv){
         p++;
     }
 
+    char *c = argv[1];
+
+    int i=0;
+    while(c[i]!='\0'){
+        printf("%c\n",c[i]);
+        i++;
+    }
+
+    
+    analy(c);
+    
     return 0;
 }
 

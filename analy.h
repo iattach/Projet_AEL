@@ -1,0 +1,1 @@
+void analy(char * c);

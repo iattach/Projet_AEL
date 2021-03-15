@@ -5,14 +5,14 @@
 #include <ctype.h>
 
 FILE *fp;  
-struct Token tokens[1024];            // note all the signs 
+static struct Token tokens[1024];            // note all the signs 
 int len = 0;                          // length of the list of token
 void nextToken(char a);
 
-int getTokensLen(){
+int getTokenLen(){
     return len;
 }
-struct Token* getTokens(){
+struct Token * getTokens(){
     return tokens;
 }
 
@@ -24,11 +24,9 @@ struct Token* addToken(enum Gra key, char *value){
     return &tokens[i];
 }
 
-void keyWithIdentityOrWord(int *i, struct Token* token){
+void keyTerminal(int *i, struct Token* token){
 
     char c = fgetc(fp);
-
-        
     
     if (!isalpha(c)){
         nextToken(c);
@@ -36,12 +34,12 @@ void keyWithIdentityOrWord(int *i, struct Token* token){
     }
     (*i)++;
     token->value[*i] = (char)c;
-    return keyWithIdentityOrWord(i, token);
+    return keyTerminal(i, token);
     
     
 }
 
-void singleOrMultipleCharacter(char a){
+void singleOrMultChar(char a){
     
     int i = 0;
     
@@ -54,7 +52,7 @@ void singleOrMultipleCharacter(char a){
                 token->key = NTERMINAL;
             }
         }
-        keyWithIdentityOrWord(&i, token);
+        keyTerminal(&i, token);
         token->value[i + 1] = '\0';
     }
 }
@@ -64,23 +62,25 @@ void nextToken(char a){
     }
     switch(a){
         case ':' :
-            addToken(COLON,":");
+            //addToken(COLON,":");
             break;
         case '\n' :
             addToken(NL,"\\n");
             break;
         default:
-            singleOrMultipleCharacter(a);
+            singleOrMultChar(a);
             break;
     }
 }
 
-void lexRun(char *file){
+void lexRun(){
 
-    fp = fopen(file,"r");
+    fp = fopen("grammaire.txt","r");
+    addToken(NL,"\\n");
     while(!feof(fp)){
         char a = fgetc(fp);
         nextToken(a);
     }
+    addToken(NL,"\\n");
     fclose(fp);
 }

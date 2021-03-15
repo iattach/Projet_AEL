@@ -1,5 +1,3 @@
-#ifndef LEX_H
-#define LEX_H
 #include <stdio.h>
 
 enum  Gra {
@@ -12,11 +10,9 @@ struct Token {
     enum Gra key;
     char value[256];
 };
-#endif
 
+struct Token* getTokens();
 
-struct Token* getTokens(void);
+int getTokenLen();
 
-int getTokensLen(void);
-
-void lexRun(char *file);
+void lexRun();
