@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 enum  Gra {
     TERMINAL,
@@ -7,12 +8,16 @@ enum  Gra {
     NL,
 };
 struct Token {
-    enum Gra key;
-    char value[256];
+    char tokens[1024][1024][1024];
+    char list_NT[1024][1024];
+    char list_T[1024][1024];
 };
 
-struct Token* getTokens();
+struct Token * getTokens();
 
-int getTokenLen();
+int * getTokenLen();
+
+int getposLT();
 
 void lexRun();
+

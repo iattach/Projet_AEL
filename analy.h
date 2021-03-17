@@ -1,1 +1,2 @@
 void analy(char * c);
+

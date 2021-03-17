@@ -1,11 +1,15 @@
-app:main.o lex.o analy.o
-	gcc main.o lex.o analy.o -o parser
+app:main.o lex.o analysis.o 
+	gcc main.o lex.o analysis.o -o parser
 
 main.o:main.c
 	gcc -c main.c
 
-lex.o:lex.c
+lex.o:lex.h lex.c
 	gcc -c lex.c
 
-analy.o:analy.c
-	gcc -c analy.c
+analy.o:analysis.h analysis.c
+	gcc -c analysis.c
+
+clean:
+	rm -rf *.o
+

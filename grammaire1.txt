@@ -1,0 +1,6 @@
+S : a S ba
+S : a b
+S : a S ba S a
+S : a Sa
+Sa : b
+Sa : b

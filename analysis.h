@@ -1,0 +1,3 @@
+void calculFF();
+
+void table();
